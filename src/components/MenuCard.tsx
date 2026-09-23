@@ -26,9 +26,9 @@ export function MenuCard({
   onOrder,
 }: MenuCardProps) {
   return (
-    <div className="bg-white rounded-3xl border border-[#2B1E16]/10 p-4 sm:p-5 flex flex-col justify-between shadow-[0_8px_25px_rgba(43,30,22,0.04)] hover:shadow-[0_12px_35px_rgba(43,30,22,0.08)] transition-all duration-300 hover:-translate-y-1 group">
+    <div className="bg-white rounded-[1.75rem] ring-1 ring-[#2B1E16]/10 p-4 sm:p-5 flex flex-col justify-between shadow-[0_8px_25px_rgba(43,30,22,0.04)] hover:shadow-[0_24px_50px_rgba(43,30,22,0.12)] transition-shadow duration-300 group">
       {/* Top Image Presentation */}
-      <div className="relative h-44 sm:h-52 w-full rounded-xl overflow-hidden bg-[#F8F5F0]">
+      <div className="relative h-44 sm:h-52 w-full rounded-[1.25rem] overflow-hidden bg-[#F8F5F0] ring-1 ring-[#2B1E16]/5">
         <img
           src={imageUrl}
           alt={title}
@@ -74,9 +74,9 @@ export function MenuCard({
           <button
             type="button"
             onClick={onOrder}
-            className="w-full border-2 border-[#211611] text-[#211611] hover:bg-[#211611] hover:text-[#FDFBF7] font-semibold text-sm py-2.5 rounded-xl transition-all duration-200 active:scale-[0.99] flex items-center justify-center gap-2 group/btn cursor-pointer"
+            className="w-full rounded-full bg-[#241812] hover:bg-[#3D291F] text-[#FDFBF7] font-bold text-sm py-3 transition-all duration-200 active:scale-[0.99] flex items-center justify-center gap-2 shadow-[0_10px_25px_rgba(36,24,18,0.15)] group/btn cursor-pointer"
           >
-            <ShoppingBag className="w-4 h-4 transition-transform duration-200 group-hover/btn:scale-110" />
+            <ShoppingBag className="w-4 h-4 text-[#C48D3F] transition-transform duration-200 group-hover/btn:scale-110" />
             <span>Add to Order</span>
           </button>
         </div>

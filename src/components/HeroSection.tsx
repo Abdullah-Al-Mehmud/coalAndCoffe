@@ -18,6 +18,7 @@ import type {
   PointerEvent as ReactPointerEvent,
 } from "react";
 import { useCallback, useEffect, useRef } from "react";
+import { Diamonds } from "./decor";
 
 /* ────────────────────────────────────────────────────────────────
    ARC CAROUSEL
@@ -251,18 +252,6 @@ function ArcGallery() {
       {PHOTOS.map((photo, i) => (
         <ArcCard key={photo.src} photo={photo} index={i} pos={pos} />
       ))}
-    </div>
-  );
-}
-
-function Diamonds({ className = "" }: { className?: string }) {
-  return (
-    <div
-      aria-hidden
-      className={`absolute hidden md:block w-7 h-7 ${className}`}>
-      <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#B07A3B]" />
-      <span className="absolute bottom-0 left-0 w-2.5 h-2.5 rotate-45 border border-[#B07A3B]" />
-      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rotate-45 border border-[#B07A3B]/50" />
     </div>
   );
 }

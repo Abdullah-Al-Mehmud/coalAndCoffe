@@ -1,11 +1,10 @@
 'use client';
 
-/* eslint-disable @next/next/no-img-element */
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Coffee, Utensils, Dessert, Grid, CheckCircle2 } from 'lucide-react';
+import { Coffee, Utensils, Dessert, Grid, CheckCircle2 } from 'lucide-react';
 import { MenuCard, MenuCardProps } from './MenuCard';
+import { Accent, Diamonds } from './decor';
 
 interface MenuItemData extends MenuCardProps {
   id: string;
@@ -104,11 +103,12 @@ export function MenuSection() {
   };
 
   return (
-    <section id="menu" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-[#FDFBF7] border-t border-[#2B1E16]/10">
-      {/* Background Soft Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#EEDCC6]/20 rounded-full blur-[160px] pointer-events-none" />
+    <section id="menu" className="relative overflow-hidden bg-[#FDFBF7] py-24 border-t border-[#2B1E16]/10 sm:py-28">
+      {/* Corner ornaments — matches HeroSection */}
+      <Diamonds className="top-24 left-8 lg:left-12" />
+      <Diamonds className="top-24 right-8 lg:right-12" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Toast Alert for Added Item */}
         <AnimatePresence>
           {orderedItem && (
@@ -116,59 +116,72 @@ export function MenuSection() {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="fixed bottom-6 right-6 z-50 bg-[#211611] text-[#FDFBF7] px-5 py-3.5 rounded-2xl shadow-xl border border-white/10 flex items-center gap-3 text-sm font-medium"
+              className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#211611] px-5 py-3.5 text-sm font-medium text-[#FDFBF7] shadow-xl"
             >
-              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              <CheckCircle2 className="h-5 w-5 text-emerald-400" />
               <span>Added <strong>{orderedItem}</strong> to order!</span>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        {/* Section header — centered like the hero */}
+        <div className="relative z-[200] mx-auto flex max-w-3xl flex-col items-center text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mb-5 font-serif text-4xl font-semibold leading-[1.15] tracking-tight text-[#211611] sm:text-5xl md:text-6xl"
           >
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#B07A3B] mb-3 px-3.5 py-1.5 rounded-full bg-white border border-[#2B1E16]/10 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Gastronomic Craft</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-bold font-serif text-[#211611] tracking-tight">
-              Crafted for the Craving.
-            </h2>
-          </motion.div>
+            Crafted for the <Accent>Craving.</Accent>
+          </motion.h2>
 
-          {/* Interactive Category Tabs */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-wrap items-center gap-1.5 backdrop-blur-md bg-[#F8F5F0] p-1.5 rounded-2xl sm:rounded-full border border-[#2B1E16]/10"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg"
           >
-            {categories.map((cat) => {
-              const IconComp = cat.icon;
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id as 'all' | 'brews' | 'bites' | 'sweets')}
-                  className={`flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? 'bg-[#211611] text-[#FDFBF7] shadow-sm'
-                      : 'text-stone-600 hover:text-[#211611] hover:bg-white/60'
-                  }`}
-                >
-                  <IconComp className={`w-4 h-4 ${isActive ? 'text-[#E6C687]' : 'text-[#B07A3B]'}`} />
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
-          </motion.div>
+            From slow-steeped nitro cold brews to coal-grilled gourmet
+            mains—every plate is crafted for the moment.
+          </motion.p>
         </div>
+
+        {/* Interactive Category Tabs — pill, like the hero's buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mx-auto mt-10 flex w-max max-w-full flex-wrap items-center justify-center gap-1.5 rounded-full border border-[#2B1E16]/10 bg-[#F8F5F0] p-1.5"
+        >
+          {categories.map((cat) => {
+            const IconComp = cat.icon;
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id as 'all' | 'brews' | 'bites' | 'sweets')}
+                className={`relative flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold transition-colors duration-300 cursor-pointer sm:text-sm ${
+                  isActive ? 'text-[#FDFBF7]' : 'text-stone-600 hover:text-[#211611]'
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="menu-active"
+                    className="absolute inset-0 rounded-full bg-[#211611] shadow-sm"
+                    transition={{ type: 'spring', duration: 0.5, bounce: 0.2 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <IconComp className={`h-4 w-4 ${isActive ? 'text-[#E6C687]' : 'text-[#B07A3B]'}`} />
+                  <span>{cat.label}</span>
+                </span>
+              </button>
+            );
+          })}
+        </motion.div>
 
         {/* Menu Cards Grid */}
         <AnimatePresence mode="wait">
@@ -178,7 +191,7 @@ export function MenuSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3"
           >
             {filteredItems.map((item, idx) => (
               <motion.div
