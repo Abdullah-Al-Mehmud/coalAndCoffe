@@ -89,7 +89,7 @@ function ArcCard({
     (p) => `calc(var(--w) * ${(R * (1 - Math.cos(p * STEP_RAD))).toFixed(4)})`,
   );
   const rotate = useTransform(rel, (p) => p * STEP);
-  const zIndex = useTransform(rel, (p) => 100 - Math.round(Math.abs(p) * 10));
+  const zIndex = useTransform(rel, (p) => 20 - Math.round(Math.abs(p) * 2));
   const opacity = useTransform(rel, (p) => {
     const a = Math.abs(p);
     return a <= 2.7 ? 1 : Math.max(0, 1 - (a - 2.7) / 0.5);
@@ -283,7 +283,7 @@ export function HeroSection() {
         <ArcGallery />
 
         {/* ── Content ─────────────────────────────────────────── */}
-        <div className="relative z-[200] mx-auto flex max-w-3xl flex-col items-center px-4 pt-6 pb-14 text-center sm:px-6">
+        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-4 pt-6 pb-14 text-center sm:px-6">
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Coffee, Menu as MenuIcon, X, ChevronRight } from 'lucide-react';
 
@@ -10,6 +10,14 @@ interface NavbarProps {
 
 export function Navbar({ onOpenEventModal }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navLinks = [
     { label: 'Home', href: '#home' },
@@ -22,7 +30,13 @@ export function Navbar({ onOpenEventModal }: NavbarProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-[#FDFBF7]/85 border-b border-[#2B1E16]/10 transition-all duration-300">
+    <header
+      className={`sticky top-0 z-[300] bg-[#FDFBF7] bg-opacity-100 transition-all duration-300 border-b ${
+        scrolled
+          ? 'border-[#2B1E16]/10 shadow-[0_4px_20px_rgba(43,30,22,0.06)]'
+          : 'border-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
         <motion.a
@@ -106,7 +120,7 @@ export function Navbar({ onOpenEventModal }: NavbarProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden backdrop-blur-xl bg-[#FDFBF7]/95 border-b border-[#2B1E16]/10 overflow-hidden"
+            className="lg:hidden bg-[#FDFBF7] border-b border-[#2B1E16]/10 overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
