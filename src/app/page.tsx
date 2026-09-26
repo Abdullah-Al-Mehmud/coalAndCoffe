@@ -20,31 +20,31 @@ export default function Home() {
       {/* Navbar */}
       <Navbar onOpenEventModal={() => setEventModalOpen(true)} />
 
-      {/* Main Sections */}
+      {/* Main Sections — all light sections follow the HeroSection pattern */}
       <main>
-        {/* Section 1: Hero (Light: bg-[#FDFBF7]) */}
+        {/* Section 1: Hero */}
         <HeroSection />
 
-        {/* Section 2: Story (Light: bg-[#F8F5F0]) */}
+        {/* Section 2: Story */}
         <StorySection />
 
-        {/* Section 3: Bento Gallery (Light: bg-[#FDFBF7]) */}
+        {/* Section 3: Bento Gallery */}
         <BentoGallery />
 
-        {/* Section 4: Curated Menu (Light: bg-[#FDFBF7]) */}
+        {/* Section 4: Curated Menu */}
         <MenuSection />
 
-        {/* Section 5: Private Events - THE ONLY DARK SECTION (Dark: bg-[#18110D]) */}
+        {/* Section 5: Private Events - THE ONLY DARK SECTION */}
         <EventsSection onOpenEventModal={() => setEventModalOpen(true)} />
 
-        {/* Section 6: Social Proof & Testimonials - BACK TO LIGHT (Light: bg-[#F8F5F0]) */}
+        {/* Section 6: Social Proof & Testimonials */}
         <TestimonialsSection />
 
-        {/* Section 7: Location, Map & Visit Details - STILL LIGHT (Light: bg-[#FDFBF7]) */}
+        {/* Section 7: Location, Map & Visit Details */}
         <LocationSection />
       </main>
 
-      {/* Section 8: Grounding Footer & Navigation - DARK FINISH (Dark: bg-[#140D09]) */}
+      {/* Section 8: Grounding Footer & Navigation - DARK FINISH */}
       <FooterSection />
 
       {/* Event Booking Modal */}
